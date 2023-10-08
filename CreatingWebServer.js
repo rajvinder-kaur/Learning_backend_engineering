@@ -15,6 +15,11 @@ import fs from 'node:fs'
 ////////////////////////////////////////////////////////////
 //💻 💻 💻 💻 💻 server 💻 💻 💻 💻  
 
+// this setup is created in a sync manner 👨‍💻 because after the server starts only the callback in the create server  will be called after each client request. 
+
+const data = fs.readFileSync('./data/data.json', 'utf-8'); // this function will write data into from the file and stores it into the data variable 
+const fileobject = JSON.parse(data);
+// this decodes the json data and stores in file 
 
 const server = http.createServer((req,res)=>{
 
@@ -25,13 +30,10 @@ const server = http.createServer((req,res)=>{
     }else if(path =='/product'){
         res.end('this is an product page !');
     }else if(path =='/api'){
-        fs.readFile('./data/data.json', 'utf-8',(err,data)=>{
-    const file = JSON.parse(data)
-    res.writeHead(200,{
-        "Content-type" : "application/json",
-    })
-    res.end(data)
-        } )
+        res.writeHead(200,{
+            "Content-type":"application/json"
+        })
+        res.end(data);
         
     }else{
         // write head helps to write headers for our response , 404(not found) is the status of the response sent 
