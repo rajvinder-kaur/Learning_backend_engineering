@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "Product-name": "Avacado🥑",
+        "Price": 12.5678943,
+        "from": "spain",
+        "quantity": 3,
+        "image": "🥑",
+        "description": "Avacado is a nice fruit and i never ate though but i know it fab because everyone says so 😢"
+    },
+    {
+        "id": 1,
+        "Product-name": "banana",
+        "Price": 234.53,
+        "from": "india",
+        "quantity": 10,
+        "image": "🍌",
+        "description": "🍌 banana is a nice fruit andi like it but not that much 😑"
+    },
+    {
+        "id": 2,
+        "Product-name": "cherries",
+        "Price": 31.4143,
+        "from": "russia",
+        "quantity": 5,
+        "image": "🍒",
+        "description": "🍒 cherry is a eww fruit and i ofen see it on cakes and i dont like it at all , its kindoff hyped up stuff 🤢"
+    },
+    {
+        "id":3,
+        "Product-name":"grapes",
+        "Price":95.24234,
+        "from":"America",
+        "quantity":1,
+        "image": "🍇",
+        "description":" 🍇 yum yum yummyy, no bad comments ! " 
+    }
+]
