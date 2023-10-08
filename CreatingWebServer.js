@@ -1,9 +1,10 @@
-import http from 'http'
+import http from 'http';
 import  url  from 'url';
+import fs from 'node:fs'
 
 
 //////////////////////////////////////////////////////////////
-//file**
+//📁📁📁📁 file 📁📁📁📁📁   
 
 
 
@@ -12,7 +13,8 @@ import  url  from 'url';
 
 
 ////////////////////////////////////////////////////////////
-//server**
+//💻 💻 💻 💻 💻 server 💻 💻 💻 💻  
+
 
 const server = http.createServer((req,res)=>{
 
@@ -22,6 +24,15 @@ const server = http.createServer((req,res)=>{
         res.end('this is an overview page !')
     }else if(path =='/product'){
         res.end('this is an product page !');
+    }else if(path =='/api'){
+        fs.readFile('./data/data.json', 'utf-8',(err,data)=>{
+    const file = JSON.parse(data)
+    res.writeHead(200,{
+        "Content-type" : "application/json",
+    })
+    res.end(data)
+        } )
+        
     }else{
         // write head helps to write headers for our response , 404(not found) is the status of the response sent 
         res.writeHead(404,{
