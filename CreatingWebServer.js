@@ -1,6 +1,7 @@
 import http from 'http';
 import  url  from 'url';
 import fs from 'node:fs'
+// import {PORT ,USERNAME,PASSWORD} from process.config.env
 
 
 //////////////////////////////////////////////////////////////
@@ -49,7 +50,7 @@ const server = http.createServer((req,res)=>{
 
 // create server is used to create a server and a call back function is passed to the function that is called at each new request 
 
-server.listen(8000, '127.0.0.1',()=>{
+server.listen(PORT, '127.0.0.1',()=>{
     console.log('====================================');
     console.log('listening to requests on 8000');
     console.log('====================================');
