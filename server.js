@@ -25,6 +25,24 @@ mongoose.connect(atlas,{
 // }).then(()=> console.log("connection established !")) 
 //connecting sucessfully using local compass string
 
+//creating a data model using mongoose 
+//👾👾👾👾👾👾4schema is used to create a data model that further facilitates the crud operations in data 👾👾👾👾👾👾
+
+const newSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        required:[true, 'a student name must be mentioned in the list!'], //its called a validator
+        unique:true
+    },
+    age:Number,
+    number:{
+        type:Number,
+        required:[true,'roll number must be mentioned for each student . . . . .']
+    }
+})
+
+const newmodel = mongoose.model('new',newSchema);
+
 // setting up express app 🚂
 const app = express(); //🔥🔥🔥🔥express function upon calling adds all express methods to our app varaiable 🔥🔥🔥🔥 
 
