@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json()); // middleware to facilitate sending data 
 
 
-app.get('/api/v1/tours/',(req,res)=>{
+app.get('/api/v1/tours/',(req,res)=>{ //to get all tours from the database
     res.status(200).json({
         status:'success',
         length: x.length ,
@@ -24,15 +24,14 @@ app.get('/api/v1/tours/',(req,res)=>{
         }
     })
 })
-app.get('/api/v1/tours/:id',(req,res)=>{
+app.get('/api/v1/tours/:id',(req,res)=>{//filtering particular data from database.
     const id = req.params.id * 1  //converting the the string value into number
 
     if(id>x.length){
-        res.status(404)
+        res.status(404)  //checks for invalid ids
     }else{
-
     const tour = x.find(el => el.id == id)
-
+    //actually filters data from the database
     res.status(200).json({
         status:'success',
         length:x.length,
