@@ -1,35 +1,4 @@
-const fs = require('fs');
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const tours = JSON.parse(
-    fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
-);
-
-exports.checkID = (req, res, next, val) => {//checks for invalid ids
-    console.log(`Tour id is: ${val}`);
-
-    if (req.params.id * 1 > tours.length) {
-        return res.status(404).json({
-            status: 'fail',
-            message: 'Invalid ID'
-        });
-    }
-    next();
-};
-
-exports.checkBody = (req, res, next) => {
-    if (!req.body.name || !req.body.price) {
-        return res.status(400).json({
-            status: 'fail',
-            message: 'Missing name or price'
-        });
-    }
-    next();
-};
+import Tour from '../models/tourModel.js';
 
 exports.getAllTours = (req, res) => {//to get all tours from the database
     console.log(req.requestTime);
@@ -58,26 +27,23 @@ exports.getTour = (req, res) => {//filtering particular data from database.
     });
 };
 
-exports.createTour = (req, res) => {
-    // console.log(req.body);
+exports.createTour = async (req, res) => {
 
-    const newId = tours[tours.length - 1].id + 1;  //creating a new id 
-    const newTour = Object.assign({ id: newId }, req.body);  //this fuction helps us form a new object by merging two existing objects
+  try{
+    const newTour = await Tour.create(req.body)
 
-    tours.push(newTour);
-
-    fs.writeFile(
-        `${__dirname}/dev-data/data/tours-simple.json`,
-        JSON.stringify(tours),
-        err => {
-            res.status(201).json({
-                status: 'success',
-                data: {
-                    tour: newTour
-                }
-            });
+    res.status(201).json({
+        status: 'success',
+        data: {
+            tour: newTour
         }
-    );
+    });
+  }catch(err){
+    res.status(404).json({
+        status:404,
+        message: err
+    })
+  }
 };
 
 exports.updateTour = (req, res) => {
